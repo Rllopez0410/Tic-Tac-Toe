@@ -1,0 +1,60 @@
+@mixin display {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    visibility: visible;
+    .choice {
+        @include display();
+        width: 100px;
+        height: 100px;
+        font-size: 100px;
+        border: 1px solid black;
+    }
+    .choice:nth-child(-n+3) {
+        border-top: none;
+    }
+    .choice:nth-child(3n+1){
+        border-left: none;
+    }
+    .choice:nth-child(n+7) {
+        border-bottom: none;
+    }
+    .choice:nth-child(3n+3){
+        border-right: none;
+    }
+}
+
+#winner {
+    @include display();
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    font-size: 100px;
+    visibility: hidden;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.913);
+    border-radius: 50%;
+    #winning-player {
+        color: white;
+    }
+}
